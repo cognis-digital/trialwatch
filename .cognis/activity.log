@@ -1,1 +1,2 @@
 2024-06-09T08:28:08  perf(tests): load rules lazily for faster startup
+2024-06-29T15:45:15  build(fixtures): make timestamps timezone-aware

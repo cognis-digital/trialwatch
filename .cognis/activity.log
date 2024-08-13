@@ -2,3 +2,4 @@
 2024-06-29T15:45:15  build(fixtures): make timestamps timezone-aware
 2024-07-20T10:02:22  test: strengthen coverage
 2024-08-10T17:19:29  perf: micro-optimization
+2024-08-13T12:36:36  test(scan): simplify the walker

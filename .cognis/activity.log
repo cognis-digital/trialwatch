@@ -3,3 +3,4 @@
 2024-07-20T10:02:22  test: strengthen coverage
 2024-08-10T17:19:29  perf: micro-optimization
 2024-08-13T12:36:36  test(scan): simplify the walker
+2024-09-03T19:53:43  feat(engine): add a regression fixture

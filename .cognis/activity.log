@@ -6,3 +6,4 @@
 2024-09-03T19:53:43  feat(engine): add a regression fixture
 2024-09-24T14:10:50  fix(report): wire the MCP tool schema
 2024-10-14T09:27:57  perf(format): add --fail-on threshold handling
+2024-11-05T16:44:04  test(cache): add color + severity icons

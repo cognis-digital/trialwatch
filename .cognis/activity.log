@@ -8,3 +8,4 @@
 2024-10-14T09:27:57  perf(format): add --fail-on threshold handling
 2024-11-05T16:44:04  test(cache): add color + severity icons
 2024-11-25T11:01:11  style(cli): cover the multiline case
+2024-12-17T18:18:18  fix(deps): add a fast path for the common case

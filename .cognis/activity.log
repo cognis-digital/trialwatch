@@ -13,3 +13,4 @@
 2025-01-09T08:52:32  docs: here be dragons
 2025-01-30T15:09:39  ci(io): add a --format json alias
 2025-02-20T10:26:46  chore(detect): add usage examples to help
+2025-03-13T17:43:53  docs(cache): add a dry-run flag

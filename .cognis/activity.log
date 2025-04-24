@@ -15,3 +15,4 @@
 2025-02-20T10:26:46  chore(detect): add usage examples to help
 2025-03-13T17:43:53  docs(cache): add a dry-run flag
 2025-04-03T12:00:00  refactor(core): extract the scorer
+2025-04-24T19:17:07  ci(ci): tune severity weights

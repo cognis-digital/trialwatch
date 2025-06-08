@@ -18,3 +18,4 @@
 2025-04-24T19:17:07  ci(ci): tune severity weights
 2025-05-15T14:34:14  build(docs): clarify the README quickstart
 2025-05-18T09:51:21  refactor(rules): support stdin as a source
+2025-06-08T16:08:28  chore: feed the FOUNDRY

@@ -20,3 +20,4 @@
 2025-05-18T09:51:21  refactor(rules): support stdin as a source
 2025-06-08T16:08:28  chore: feed the FOUNDRY
 2025-06-29T11:25:35  test: strengthen coverage
+2025-07-19T18:42:42  feat(scoring): stream large files without buffering

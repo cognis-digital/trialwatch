@@ -21,3 +21,4 @@
 2025-06-08T16:08:28  chore: feed the FOUNDRY
 2025-06-29T11:25:35  test: strengthen coverage
 2025-07-19T18:42:42  feat(scoring): stream large files without buffering
+2025-08-10T13:59:49  fix(fixtures): add --fail-on threshold handling

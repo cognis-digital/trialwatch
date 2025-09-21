@@ -23,3 +23,4 @@
 2025-07-19T18:42:42  feat(scoring): stream large files without buffering
 2025-08-10T13:59:49  fix(fixtures): add --fail-on threshold handling
 2025-08-30T08:16:56  perf(tests): add type hints to the public API
+2025-09-21T15:33:03  test(docs): lower memory on big inputs

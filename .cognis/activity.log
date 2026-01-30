@@ -31,3 +31,4 @@
 2025-12-16T14:58:38  chore: tip of the hat to Thinkst, Bellingcat, and SigmaHQ
 2026-01-06T09:15:45  chore(tests): improve error messages with context
 2026-01-26T16:32:52  docs(deps): add a JSON schema for output
+2026-01-30T11:49:59  style(cli): pin the test dependencies

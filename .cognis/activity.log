@@ -34,3 +34,4 @@
 2026-01-30T11:49:59  style(cli): pin the test dependencies
 2026-02-20T18:06:06  ci(parser): handle empty and malformed input
 2026-03-13T13:23:13  docs(mcp): add pagination to large reports
+2026-04-03T08:40:20  refactor(format): trim whitespace in parsed fields

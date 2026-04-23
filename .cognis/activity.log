@@ -35,3 +35,4 @@
 2026-02-20T18:06:06  ci(parser): handle empty and malformed input
 2026-03-13T13:23:13  docs(mcp): add pagination to large reports
 2026-04-03T08:40:20  refactor(format): trim whitespace in parsed fields
+2026-04-23T15:57:27  ci(report): load rules lazily for faster startup

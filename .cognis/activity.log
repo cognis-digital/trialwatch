@@ -37,3 +37,4 @@
 2026-04-03T08:40:20  refactor(format): trim whitespace in parsed fields
 2026-04-23T15:57:27  ci(report): load rules lazily for faster startup
 2026-05-15T10:14:34  chore: BLACKBOOK redaction pass
+2026-06-04T17:31:41  feat(ci): memoize repeated lookups

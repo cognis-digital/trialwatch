@@ -1,2 +1,11 @@
-"""TRIALWATCH — Query, diff, and monitor ClinicalTrials.gov records, alerting on status, enrollment, or result changes."""
-__version__ = "0.1.0"
+"""trialwatch — part of the Cognis Neural Suite."""
+try:  # re-export the tool's public API + identity from core
+    from trialwatch.core import *  # noqa: F401,F403
+except Exception:  # pragma: no cover
+    pass
+try:
+    from trialwatch.core import TOOL_NAME, TOOL_VERSION
+except Exception:  # pragma: no cover
+    TOOL_NAME = "trialwatch"
+    TOOL_VERSION = "0.1.0"
+__version__ = TOOL_VERSION

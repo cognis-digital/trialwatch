@@ -1,0 +1,10 @@
+{
+  "name": "@cognis/trialwatch",
+  "version": "0.2.0",
+  "description": "JavaScript port of trialwatch (Cognis Neural Suite)",
+  "bin": {
+    "trialwatch": "index.js"
+  },
+  "license": "LicenseRef-COCL-1.0",
+  "type": "module"
+}

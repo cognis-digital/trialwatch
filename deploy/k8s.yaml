@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: trialwatch, labels: { app: trialwatch } }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: trialwatch } }
+  template:
+    metadata: { labels: { app: trialwatch } }
+    spec:
+      containers:
+        - name: trialwatch
+          image: ghcr.io/cognis-digital/trialwatch:latest
+          ports: [{ containerPort: 8000 }]
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits: { cpu: "500m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: trialwatch }
+spec:
+  selector: { app: trialwatch }
+  ports: [{ port: 80, targetPort: 8000 }]

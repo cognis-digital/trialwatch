@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-trialwatch
+pip install "git+https://github.com/cognis-digital/trialwatch.git"
 trialwatch scan .            # → prioritized findings in seconds
 ```
 
@@ -49,7 +49,7 @@ Biotech analysts and patients get a CI-schedulable 'is my trial still recruiting
 ## Quick start
 
 ```bash
-pip install cognis-trialwatch
+pip install "git+https://github.com/cognis-digital/trialwatch.git"
 trialwatch --version
 trialwatch scan .                       # scan current project
 trialwatch scan . --format json         # machine-readable

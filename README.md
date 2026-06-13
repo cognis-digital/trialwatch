@@ -20,6 +20,12 @@ pip install "git+https://github.com/cognis-digital/trialwatch.git"
 trialwatch scan .            # → prioritized findings in seconds
 ```
 
+<!-- cognis:layman:start -->
+## What is this?
+
+TRIALWATCH lets you track changes in clinical trial records from ClinicalTrials.gov. Give it two snapshots of trial data — taken at different times — and it tells you what changed: whether a trial was terminated, enrollment numbers jumped significantly, or a trial was added or removed. It outputs a clear report you can read in a terminal or feed into automated systems, and it can sound an alarm (non-zero exit code) if anything important changed so you can wire it into a scheduled job or CI pipeline. It is useful for biotech analysts, patient advocates, or anyone who needs to stay on top of whether a specific clinical study is still recruiting or has changed course.
+<!-- cognis:layman:end -->
+
 ## Contents
 
 - [Why trialwatch?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
@@ -46,6 +52,42 @@ Biotech analysts and patients get a CI-schedulable 'is my trial still recruiting
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="quick-start"></a>
+<!-- cognis:install:start -->
+## Install
+
+`trialwatch` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/trialwatch/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/trialwatch/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/trialwatch.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/trialwatch.git"  # uv
+pip install "git+https://github.com/cognis-digital/trialwatch.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/trialwatch.git
+cd trialwatch && pip install .
+```
+
+Then run:
+```sh
+trialwatch --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start
 
 ```bash

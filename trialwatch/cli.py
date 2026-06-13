@@ -82,11 +82,6 @@ def build_parser() -> argparse.ArgumentParser:
         "--version", action="version",
         version="{} {}".format(TOOL_NAME, TOOL_VERSION),
     )
-    parser.add_argument(
-        "--format", choices=["table", "json"], default="table",
-        help="output format (default: table)",
-    )
-
     sub = parser.add_subparsers(dest="command", metavar="COMMAND")
 
     diff_p = sub.add_parser(
@@ -105,6 +100,10 @@ def build_parser() -> argparse.ArgumentParser:
     diff_p.add_argument(
         "--fail-on", choices=["critical", "warning", "info"], default="warning",
         help="minimum severity that causes a non-zero exit (default: warning)",
+    )
+    diff_p.add_argument(
+        "--format", choices=["table", "json"], default="table",
+        help="output format (default: table)",
     )
     return parser
 

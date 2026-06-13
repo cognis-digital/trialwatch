@@ -20,6 +20,39 @@ pip install cognis-trialwatch
 trialwatch scan .            # → prioritized findings in seconds
 ```
 
+## Usage — step by step
+
+1. **Install** (Python 3.9+):
+
+   ```bash
+   pip install trialwatch
+   ```
+
+2. **Diff two trial snapshots.** Compare a baseline against a newer pull and report the changes:
+
+   ```bash
+   trialwatch diff baseline.json latest.json
+   ```
+
+3. **Tune sensitivity.** Set the enrollment swing that escalates info→warning, and the severity that should fail:
+
+   ```bash
+   trialwatch diff baseline.json latest.json --enrollment-threshold 50 --fail-on warning
+   ```
+
+4. **Read the output as JSON** for downstream tooling:
+
+   ```bash
+   trialwatch --format json diff baseline.json latest.json | jq '.findings[]'
+   ```
+
+5. **Gate in CI / cron.** Exit `0` means nothing at/above `--fail-on`; `1` means findings (alert); `2` is a usage error:
+
+   ```bash
+   trialwatch diff baseline.json latest.json --fail-on warning || echo "Trial change detected"
+   ```
+
+
 ## Contents
 
 - [Why trialwatch?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)

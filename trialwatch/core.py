@@ -189,7 +189,12 @@ def normalize_trial(obj: Dict[str, Any]) -> Trial:
 
 
 def load_trials_from_obj(data: Any) -> Dict[str, Trial]:
-    """Build a {nct_id: Trial} map from already-parsed JSON data."""
+    """Build a {nct_id: Trial} map from already-parsed JSON data.
+
+    Skips records that cannot be normalized (missing NCT id, wrong type)
+    and raises ValueError only when *no* valid trial could be extracted
+    from a non-empty list.
+    """
     if isinstance(data, dict):
         for key in ("studies", "trials", "records", "data"):
             if isinstance(data.get(key), list):
@@ -200,17 +205,46 @@ def load_trials_from_obj(data: Any) -> Dict[str, Trial]:
             data = [data]
     if not isinstance(data, list):
         raise ValueError("snapshot must be a list of trials or contain one")
+    if len(data) == 0:
+        return {}
     trials: Dict[str, Trial] = {}
-    for item in data:
-        trial = normalize_trial(item)
-        trials[trial.nct_id] = trial
+    errors: List[str] = []
+    for idx, item in enumerate(data):
+        try:
+            trial = normalize_trial(item)
+            trials[trial.nct_id] = trial
+        except (ValueError, TypeError, AttributeError) as exc:
+            errors.append("record[{}]: {}".format(idx, exc))
+    if not trials and errors:
+        raise ValueError(
+            "no valid trial records found; first error: {}".format(errors[0])
+        )
     return trials
 
 
 def load_trials(path: str) -> Dict[str, Trial]:
-    """Load a snapshot file and return a {nct_id: Trial} map."""
-    with open(path, "r", encoding="utf-8") as fh:
-        data = json.load(fh)
+    """Load a snapshot file and return a {nct_id: Trial} map.
+
+    Raises:
+        FileNotFoundError: if *path* does not exist.
+        PermissionError: if the file cannot be read.
+        ValueError: if the file is not valid JSON or contains no valid trials.
+    """
+    try:
+        with open(path, "r", encoding="utf-8") as fh:
+            data = json.load(fh)
+    except FileNotFoundError:
+        # Let FileNotFoundError propagate unmodified so callers (and the CLI)
+        # can detect "missing file" vs other I/O failures.
+        raise
+    except PermissionError as exc:
+        raise PermissionError(
+            "cannot read '{}': permission denied".format(path)
+        ) from exc
+    except OSError as exc:
+        # Re-raise as ValueError so callers get a consistent error type for
+        # other I/O failures.
+        raise ValueError("cannot open '{}': {}".format(path, exc)) from exc
     return load_trials_from_obj(data)
 
 
@@ -245,8 +279,21 @@ def diff_trials(
     """Compute a structured diff between two {nct_id: Trial} maps.
 
     enrollment_pct_threshold: enrollment swings >= this percent are flagged
-    as 'warning' rather than 'info'.
+    as 'warning' rather than 'info'. Must be >= 0; values > 100 are accepted
+    (they simply mean only very large swings get escalated to 'warning').
+
+    Raises:
+        ValueError: if *enrollment_pct_threshold* is negative.
+        TypeError: if *base* or *new* are not dicts.
     """
+    if not isinstance(base, dict) or not isinstance(new, dict):
+        raise TypeError("base and new must be dicts mapping nct_id -> Trial")
+    if enrollment_pct_threshold < 0:
+        raise ValueError(
+            "enrollment_pct_threshold must be >= 0, got {!r}".format(
+                enrollment_pct_threshold
+            )
+        )
     report = DiffReport(base_count=len(base), new_count=len(new))
     base_ids = set(base)
     new_ids = set(new)

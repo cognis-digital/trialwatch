@@ -117,19 +117,38 @@ def main(argv: Optional[List[str]] = None) -> int:
         return 2
 
     if args.command == "diff":
+        if args.enrollment_threshold < 0:
+            print(
+                "error: --enrollment-threshold must be >= 0, got {!r}".format(
+                    args.enrollment_threshold
+                ),
+                file=sys.stderr,
+            )
+            return 2
+
         try:
             base = load_trials(args.old)
             new = load_trials(args.new)
         except FileNotFoundError as exc:
             print("error: file not found: {}".format(exc.filename), file=sys.stderr)
             return 2
+        except PermissionError as exc:
+            print("error: {}".format(exc), file=sys.stderr)
+            return 2
         except (ValueError, json.JSONDecodeError) as exc:
             print("error: {}".format(exc), file=sys.stderr)
             return 2
+        except OSError as exc:
+            print("error: cannot read file: {}".format(exc), file=sys.stderr)
+            return 2
 
-        report = diff_trials(
-            base, new, enrollment_pct_threshold=args.enrollment_threshold
-        )
+        try:
+            report = diff_trials(
+                base, new, enrollment_pct_threshold=args.enrollment_threshold
+            )
+        except (ValueError, TypeError) as exc:
+            print("error: {}".format(exc), file=sys.stderr)
+            return 2
 
         if args.format == "json":
             print(json.dumps(report.to_dict(), indent=2))

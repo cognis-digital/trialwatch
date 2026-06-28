@@ -20,6 +20,61 @@ pip install cognis-trialwatch
 trialwatch scan .            # → prioritized findings in seconds
 ```
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ trialwatch-emit --version
+trialwatch 0.1.0
+```
+
+```console
+$ trialwatch-emit --help
+usage: trialwatch [-h] [--version] [--format {table,json}] COMMAND ...
+
+Diff and monitor clinical-trial records, alerting on status / enrollment / phase changes. CI-schedulable.
+
+positional arguments:
+  COMMAND
+    diff                diff two trial snapshots and report changes
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --format {table,json}
+                        output format (default: table)
+
+Example: trialwatch diff old.json new.json --format json --fail-on warning
+```
+
+> Blocks above are real `trialwatch` output — reproduce them from a clone.
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+"findings": [
+    {
+        "id": "123456",
+        "title": "Suspicious Activity",
+        "description": "Anomalous network traffic detected.",
+        "indicator": {
+            "type": "ip",
+            "value": "192.0.2.1"
+        },
+        "mitre_attack": [
+            {"technique": "T1190", "id": "TA0004"}
+        ]
+    }
+]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 1. **Install** (Python 3.9+):

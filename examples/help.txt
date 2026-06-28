@@ -1,0 +1,17 @@
+$ trialwatch-emit --help
+
+usage: trialwatch [-h] [--version] [--format {table,json}] COMMAND ...
+
+Diff and monitor clinical-trial records, alerting on status / enrollment / phase changes. CI-schedulable.
+
+positional arguments:
+  COMMAND
+    diff                diff two trial snapshots and report changes
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --format {table,json}
+                        output format (default: table)
+
+Example: trialwatch diff old.json new.json --format json --fail-on warning

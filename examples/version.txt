@@ -1,0 +1,3 @@
+$ trialwatch-emit --version
+
+trialwatch 0.1.0
